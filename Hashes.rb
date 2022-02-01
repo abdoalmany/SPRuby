@@ -1,8 +1,7 @@
-#5Hashes
-#------------------------------
 #5a
 
 Employees = {
+#Key    value{key:value , key:value} 
 "10" => {name:"Ahmed",salary:1000},
 "21"=>{name:"Mohamed",salary:2000},
 "113"=>{name:"Mahmoud",salary:5000},
@@ -23,46 +22,43 @@ Employees = {
 "17"=>{name:"Kholod",salary:nil},
 "14"=>{name:"Said",salary:nil}}
 #i
-Employees.each_value do |i|
-    p i[:name]
+Employees.each_value do |value|
+    p value[:name]
 end
 #ii
 p Employees.keys
 #iii
-employees = Hash.new()
-Employees.each {|e| 
-    if e[1][:salary] != nil
-        employees[e[0]] = e[1]
+arr = []
+Employees.each do |key ,value|
+    if key.to_i > 0 && value[:salary]!=nil 
+        arr.push value[:salary] #making array of salaries
     end
-}
-p employees.max_by(3) {|k,v| v[:salary]}
-#iv
-Employees.each {|e| 
-    if e[1][:salary] != nil
-        employees[e[0]] = e[1]
+end
+Employees.each do |key ,value|
+    if key.to_i > 0 &&value[:salary]==arr.max 
+        p value #printing values for maximum salaries
     end
-}
-p employees.min_by(3) {|k,v| v[:salary]}
-#v
-Employees.each {|e| 
-    if e[1][:salary] != nil
-        employees[e[0]] = e[1]
+end
+p"============================================================="
+#IV
+Employees.each do |key ,value|
+    if key.to_i > 0 &&value[:salary]==arr.min 
+        puts "#{key}:#{value}" #printing values for minmum salaries
     end
-}
-p (employees.sum {|k,v| v[:salary]}) / Employees.length
-
-#vi
-Employees.each {|e| 
-    if e[1][:salary] != nil
-        employees[e[0]] = e[1]
+end
+puts"avgavgavgavgavgavgavgavgavgavgavgavgavgavgavgavgavgavg"
+#V
+puts "salaries average = #{arr.sum / arr.size}" 
+p"============================================================="
+#VI
+Employees.each do |key ,value|
+    if key.to_i > 0 && value[:salary]!=nil 
+        p value
     end
-}
-p employees
-
-#vii
-p "==============================================="
-p Employees.uniq {|e| e[1][:name]}
-
+end
+p"---------------------------------------------------------"
+#VII
+puts Employees.uniq {|emp| emp[1][:name]}
 #B
 arr = [10, 20, 30, 40, 10, 10, 20]
 p arr.tally
